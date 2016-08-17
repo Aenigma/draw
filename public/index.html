@@ -1,0 +1,25 @@
+<html>
+  <head>
+    <title>Canvas Layout</title>
+    <link rel="stylesheet" href="/stylesheets/style.css">
+    <script defer src="/javascripts/quickdraw.js"></script>
+  </head>
+  <body>
+    <div class="grid">
+      <div class="chat">Chat Content</div>
+      <div class="canvas-container">
+        <canvas class="canvas" width="1920px" height="1080px">
+        </canvas>
+        <div class="toolbar-container">
+          <div class="toolbar">
+            <button class="btn easel" data-click-action="color">Color</button>
+            <button class="btn easel" data-click-action="thick">Thickness</button>
+            <button class="btn easel" data-click-action="linejoin">LJ</button>
+            <button class="btn easel" data-click-action="linecap">LC</button>
+            <button class="btn easel" data-click-action="clear">Clear</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>
+</html>

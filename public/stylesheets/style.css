@@ -1,0 +1,120 @@
+/*
+html {
+  overflow: hidden;
+}
+*/
+.canvas {
+  border-style: solid;
+  border-color: rgba(0, 0, 0, 0.1);
+  cursor: url(/images/cursor.svg), auto;
+}
+
+
+.grid {
+  display: flex;
+  justify-content: space-between;
+}
+
+.chat {
+  min-width: 200px;
+  background-color: #fbfbfb;
+}
+
+.canvas-container {
+  display: block;
+  overflow: hidden;
+}
+
+.canvas-container .canvas {
+  position: absolute;
+  overflow: hidden;
+}
+
+.toolbar-container {
+  position: relative;
+  height: 100%;
+  float: right;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+
+  right: -50px;
+
+  transition: right 0.5s;
+}
+
+.toolbar-container:hover {
+  right: 0px;
+}
+
+.toolbar {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: flex-end;
+}
+
+.toolbar .btn.easel {
+  width: 60px;
+  height: 60px;
+  margin: 2px;
+  line-height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 10px;
+  outline: none;
+}
+
+@media (max-width: 1565px) {
+  /* chat on bottom; not implemented */
+
+  .chat {
+    width: calc(100% - 1280px);
+  }
+
+  .canvas-container {
+    width: 1280px;
+    height: 720px;
+  }
+
+  .canvas-container .canvas {
+    width: 1280px;
+    height: 720px;
+  }
+}
+
+@media (min-width: 1566px) {
+
+  .chat {
+    width: calc(100% - 1366px);
+  }
+
+  .canvas-container {
+    width: 1366px;
+    height: 768px;
+  }
+
+  .canvas-container .canvas {
+    width: 1366px;
+    height: 768px;
+  }
+}
+
+@media (min-width: 1800px) {
+  /* 800x600 normal */
+
+  .chat {
+    width: calc(100% - 1600px);
+  }
+
+  .canvas-container {
+    width: 1600px;
+    height: 900px;
+  }
+
+  .canvas-container .canvas {
+    width: 1600px;
+    height: 900px;
+  }
+}
