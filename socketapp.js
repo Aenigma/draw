@@ -33,35 +33,42 @@ io.sockets.on('connection', function (socket) {
     });
   };
 
-  (function(){
+  (() => {
     socket.emit('welcome', {
       id: socket.id,
       rooms: getAllRooms(io.sockets)
     });
   })();
 
-  socket.on('join', function(data) {
+  socket.on('join', function(room) {
     // leave every room that the socket is in
-    socket.rooms
-      .map(room => {room: room})
-      .map(leaveRoom);
+    /*
+    if(socket.rooms) {
+      var rooms = Object.keys(socket.rooms);
+   .filter(id => !socket.id)
+        .map(room => {room: room})
+        .map(leaveRoom);
+        console.log(rooms);
+    }*/
 
-    var roomName = data.room;
-    socket.join(roomName, handleError);
+    socket.join(room, handleError);
+
+    socket.emit('joined', room);
+
+    //console.log(io.nsps['/'].adapter.rooms[data.room].sockets);
+    //console.log(io.sockets);
   });
 
   socket.on('leave', leaveRoom);
 
-	socket.on('canvas update', function (data) {
+	socket.on('canvas update', function (room, data) {
     var sendData = {
-      id: socket.id,
-      x: data.x,
-      y: data.y,
-      drawing: {
-
-      }
+      peer: socket.id,
+      pathID: data.pathID,
+      path: data
     };
-		socket.broadcast.emit('canvas update', sendData);
+    // should verify if sender is in room...
+		socket.broadcast.to(room).emit('peer update', sendData);
 	});
 });
 
