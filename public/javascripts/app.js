@@ -9,10 +9,30 @@ function loadFile (sURL, fCallback) {
 }
 
 (function(url){
-  const canvas = document.getElementsByClassName('canvas')[0];
+  let canvas = document.getElementsByClassName('canvas')[0];
   let connection = new ConnectionHandler();
-  connection.registerEvents();
 
+  let ch = new CanvasHandler(canvas);
+  ch.register();
+
+  var point = 100;
+  let int = setInterval(() => {
+    let ctx = ch.layers[1].ctx;
+    ctx.save();
+    ctx.moveTo(0, 0);
+    ctx.strokeStyle = 'red';
+    ctx.lineTo(point, point);
+    ctx.stroke();
+    ctx.restore();
+    ch.redraw();
+
+    if(point >= Math.min(canvas.height, canvas.width)) {
+      clearInterval(int);
+    }
+    point++;
+  }, 250);
+
+  connection.registerEvents();
   connection.socket.emit('join', 'potato');
 
   loadFile(url, function(res) {
